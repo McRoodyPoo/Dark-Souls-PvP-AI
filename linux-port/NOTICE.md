@@ -8,8 +8,10 @@ The original is licensed under the GNU General Public License, version 2
 (Copyright (c) 2015 Giovanni Frank Crisanti). This project is a derivative work and is
 distributed under the same license: see [`LICENSE`](LICENSE). This port lives in a GitHub
 fork of the original repository; the original source is the rest of this repository
-([`../`](../)), unmodified, with its own [`LICENSE.md`](../LICENSE.md), and its full commit
-history is kept. Several modules (`ptde_ai/offsets.py`, `brain.py`, `character.py`,
+([`../`](../)), with its own [`LICENSE.md`](../LICENSE.md), and its full commit
+history is kept. Its source code is unmodified; its README was moved to
+[`ORIGINAL_README.md`](../ORIGINAL_README.md) (lightly trimmed) and the repository's front page
+[`README.md`](../README.md) now describes this port. Several modules (`ptde_ai/offsets.py`, `brain.py`, `character.py`,
 `geometry.py`, `history.py`, `redsign.py`) are direct ports of the original's C code, and
 `ptde_ai/tables.py` is generated from its animation and weapon tables by
 `tools/convert_tables.py`.
