@@ -4,10 +4,10 @@ A Linux-native Dark Souls: Prepare to Die Edition PvP bot, ported to Python and 
 [metal-crow/Dark-Souls-PvP-AI](https://github.com/metal-crow/Dark-Souls-PvP-AI)
 (GPL v2, so this port is GPL v2 too: see `LICENSE` and `NOTICE.md`). This folder lives in a
 fork of that repository: metal-crow's original C/C# project is the rest of this repo (`../`),
-unchanged, with its own `LICENSE.md`.
+with its own `LICENSE.md`.
 
 It reads game state from memory (read-only), decides, and drives a virtual
-controller. It does not inject code, does not write to game memory, and does not need Cheat Engine or vJoy.
+controller. It does not inject code, does not write to game memory, and does not need Cheat Engine.
 
 > **Disclaimer.** This is a hobby/research project. Using bots or automation in online play may
 > violate the game's or platform's terms of service and may get your account restricted. Other
@@ -55,7 +55,7 @@ are git-ignored; they contain other players' Steam names and IDs, so don't publi
 | `ReadProcessMemory` + `FindPointerAddr`      | `ptde_ai/memory.py`: `/proc/<pid>/mem`, same chain semantics | done, tested off-game |
 | pointer tables in `CharacterStruct.h`        | `ptde_ai/offsets.py` (all Enemy/Player/camera chains)   | ported, **unverified in-game** |
 | `ReadPlayer` (raw reads)                     | `ptde_ai/state.py`: snapshot per tick, re-resolved every tick | done |
-| vJoy driver (DirectInput, unmaintained)      | `ptde_ai/gamepad.py`: uinput virtual Xbox 360 pad, vJoy-shaped API | done, kernel sees it |
+| virtual controller driver (DirectInput)      | `ptde_ai/gamepad.py`: uinput virtual Xbox 360 pad       | done, kernel sees it |
 | Cheat Engine "lock camera rotation" + `OolicelMap` flag | `ptde_ai/steer.py`: camera-relative steering from live yaw | done, needs one in-game calibration |
 | AIDecisions / AIMethods / MindRoutines / SubRoutines | `ptde_ai/brain.py` (single-threaded)            | ported, offline-tested |
 | CharacterStruct.c subanimation logic         | `ptde_ai/character.py`                                  | ported, offline-tested |
@@ -110,9 +110,7 @@ Tests: `python tests/test_brain.py` (simulated duel situations, no game needed).
    same memory reader and retrain (or replace with a small modern model).
 6. **Known gaps the author lists:** no poise awareness, trades too often, can't
    punish whiffed backstabs. Healing is broken and disabled (last commit).
-7. **vJoy.** Unsigned/unmaintained driver, DirectInput layout configured by hand
-   ("20 buttons, 1 POV"). *Fix:* uinput Xbox pad, which Proton/SDL map natively.
-8. **Engineering.** Global mutable state shared across threads with `volatile` flags,
+7. **Engineering.** Global mutable state shared across threads with `volatile` flags,
    hardcoded `E:/...` paths (FANN crashes on long paths), blind sleep-based menu
    macros for auto red-signing. *Fix:* single-threaded fixed-rate loop (the nets are
    microseconds in numpy), config file, menu macros gated on memory state.

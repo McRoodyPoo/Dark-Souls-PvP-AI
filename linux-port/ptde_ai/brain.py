@@ -123,7 +123,7 @@ class Config:
     # metal-crow's build kept a weapon in the second left slot. With nothing to swap to
     # (e.g. fists in both hands) this re-fires every 500 ms forever, so it's off by default.
     switch_off_fists: bool = False
-    cardinal_rolls: bool = False       # original only rolled along one stick axis (a vJoy-era workaround)
+    cardinal_rolls: bool = False       # original only rolled along one stick axis
     use_attack_net: bool = True
     use_defense_net: bool = True
     # Poise through hits that can't stagger us and punish with a (pivot) backstab instead
@@ -1366,7 +1366,7 @@ class Brain:
         new_roll = p.sub == Sub.LOCK_IN and p.anim_id != self._roll_from
         if (t >= 60 and new_roll) or p.sub == Sub.POISE_BROKEN or t > 900:
             return self._finish("def", Def.STANDARD_ROLL)
-        # One press. The C hammered circle 4 times (vJoy could drop inputs); on a reliable
+        # One press. The C hammered circle 4 times (the old driver could drop inputs); on a reliable
         # pad each extra press queued another roll.
         if t < 60:
             pad.buttons |= CIRCLE

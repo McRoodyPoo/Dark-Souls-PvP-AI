@@ -24,7 +24,7 @@ Python port and extensions: Copyright (c) 2026 the ptde-pvp-bot contributors.
 - Game memory is read **read-only** through `/proc/<pid>/mem` (`memory.py`, `process.py`),
   using the original's pointer chains; nothing is written to the game, no code is injected,
   and Cheat Engine is not needed. Pointers are re-resolved every tick.
-- The vJoy driver is replaced by a uinput virtual Xbox 360 pad (`gamepad.py`), and the user's
+- Controller output is a uinput virtual Xbox 360 pad (`gamepad.py`), and the user's
   real controller is passed through it (`realpad.py`), with an L3+R3 handoff between the
   player and the bot (`handoff.py`).
 - The Cheat Engine camera lock is replaced by camera-relative steering from the live camera

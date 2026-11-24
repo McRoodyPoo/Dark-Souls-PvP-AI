@@ -47,12 +47,12 @@ class Steering:
 
     def stick_for_heading(self, world_heading: float, cam_yaw: float,
                           magnitude: float = 1.0) -> tuple[int, int]:
-        """vJoy-style (lx, ly) that moves the character toward world_heading."""
+        """Pad (lx, ly) that moves the character toward world_heading."""
         rel = self.sign * wrap(world_heading - cam_yaw - self.offset)
         x = math.sin(rel) * magnitude
         fwd = math.cos(rel) * magnitude
         lx = int(MIDDLE + x * (MIDDLE - 1))
-        ly = int(MIDDLE - fwd * (MIDDLE - 1))   # vJoy: 1 = top = forward
+        ly = int(MIDDLE - fwd * (MIDDLE - 1))   # 1 = top = forward
         return lx, ly
 
     def stick_toward(self, me, target, cam_yaw: float, away: bool = False) -> tuple[int, int]:

@@ -1,11 +1,11 @@
-"""Virtual Xbox 360 pad over Linux uinput. Replaces metal-crow's vJoy driver.
+"""Virtual Xbox 360 pad over Linux uinput.
 
 Proton/SDL sees a device with Microsoft's 360 vendor/product ids and maps it to
 XInput, so the game treats it as a normal controller.
 
-The API mirrors metal-crow's vJoy report so the ported logic reads the same:
+The API mirrors metal-crow's controller report so the ported logic reads the same:
   pad.buttons |= R1; pad.lx = XRIGHT; pad.send()
-Axes are 1..32768 with MIDDLE = 16384 like vJoy, converted on send().
+Axes are 1..32768 with MIDDLE = 16384 like the original, converted on send().
 PS-style names map to 360 buttons by position (square = X, cross = A, ...).
 """
 from __future__ import annotations
@@ -14,7 +14,7 @@ import time
 
 from evdev import AbsInfo, UInput, ecodes as e
 
-# vJoy-compatible axis range (HelperUtil.h)
+# Axis range, same as metal-crow's HelperUtil.h
 XLEFT = YTOP = 1
 XRIGHT = YBOTTOM = 32768
 MIDDLE = 16384
@@ -25,7 +25,7 @@ L1, R1, L2, R2 = 0x10, 0x20, 0x40, 0x80
 L3, R3 = 0x100, 0x200        # stick clicks (R3 = lock-on in PTDE)
 SELECT, START = 0x400, 0x800
 
-# D-pad (vJoy discrete POV values)
+# D-pad (discrete POV values)
 DUP, DRIGHT, DDOWN, DLEFT, DCENTER = 0, 1, 2, 3, -1
 
 _BTN = {  # bit -> evdev key (xpad layout: BTN_X=307 is the left face button)
@@ -45,7 +45,7 @@ DEFAULT_PRODUCT = 0x028E
 
 
 def _stick(v: int) -> int:
-    """vJoy 1..32768 -> evdev -32768..32767."""
+    """1..32768 -> evdev -32768..32767."""
     return max(-32768, min(32767, int((v - MIDDLE) * 2)))
 
 
@@ -65,7 +65,7 @@ class VirtualPad:
                          bustype=e.BUS_USB)
         self.reset()
 
-    # --- report state (vJoy-style) --------------------------------------
+    # --- report state ----------------------------------------------------
     def reset(self) -> None:
         self.lx = self.ly = self.rx = self.ry = MIDDLE
         self.buttons = 0

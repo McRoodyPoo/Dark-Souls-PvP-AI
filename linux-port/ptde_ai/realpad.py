@@ -79,7 +79,7 @@ class PadState:
         )
 
     def apply_to(self, pad) -> None:
-        """Copy this state onto the bot's virtual pad (vJoy-style units)."""
+        """Copy this state onto the bot's virtual pad (1..32768 units)."""
         to_v = lambda x: int(MIDDLE + max(-1.0, min(1.0, x)) * (MIDDLE - 1))
         pad.lx, pad.ly, pad.rx, pad.ry = to_v(self.lx), to_v(self.ly), to_v(self.rx), to_v(self.ry)
         pad.buttons = self.buttons()
