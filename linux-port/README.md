@@ -9,11 +9,6 @@ with its own `LICENSE.md`.
 It reads game state from memory (read-only), decides, and drives a virtual
 controller. It does not inject code, does not write to game memory, and does not need Cheat Engine.
 
-> **Disclaimer.** This is a hobby/research project. Using bots or automation in online play may
-> violate the game's or platform's terms of service and may get your account restricted. Other
-> players may not want to fight a bot. You are responsible for how you use it. No warranty
-> (see `LICENSE`).
-
 ## Requirements
 
 - Linux with `/dev/uinput` writable by your user (virtual gamepad), and a kernel that allows

@@ -9,10 +9,6 @@ It started as a Python port of metal-crow's Windows/C
 past it: a backstab-focused build, nets retrained on its own fights, per-opponent adaptation,
 and full arena-mod etiquette (red-signing, bowing, the dugout queue).
 
-> **Disclaimer.** This is a hobby/research project. Using bots in online play may break the
-> game's or Steam's terms of service and may get your account restricted, and other players may
-> not want to fight a bot. You are responsible for how you use it. No warranty (see the license).
-
 ## What it does
 
 **Fights.** By default it plays a Havel + Great Club backstab build: kick-input backstabs,
