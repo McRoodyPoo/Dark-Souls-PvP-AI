@@ -1,0 +1,15 @@
+# Runtime data: fight recordings and per-opponent records hold other players' Steam names/IDs
+recordings/
+records/
+control/
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Backups / temp files
+*.bak*
+*.tmp
+
+# models/*.npz and models/*.json (incl. hit_damage.json) are tracked on purpose

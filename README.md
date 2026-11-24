@@ -1,3 +1,10 @@
+> **About this fork.** This fork adds [`linux-port/`](linux-port/): a Linux/Proton port of this
+> AI to Python, with many additions (memory reading on Linux, a virtual gamepad, retrained nets,
+> per-opponent adaptation, arena-mod support). All credit for the original AI, its memory
+> research and its data goes to **metal-crow** (Giovanni Frank Crisanti); the original project
+> below is unchanged. The port is GPL v2 like the original: see
+> [`linux-port/NOTICE.md`](linux-port/NOTICE.md) and [`linux-port/LICENSE`](linux-port/LICENSE).
+
 # Project King, The Dark Souls PvP AI
 AI for playing (and winning) in Dark Souls PVP. Shown in a fully automated 24/7 stream: https://www.twitch.tv/darksoulsai
   
